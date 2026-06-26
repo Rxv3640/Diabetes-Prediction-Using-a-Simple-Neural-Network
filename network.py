@@ -22,3 +22,20 @@ def initialize_parameters(n_input, n_hidden, n_output):
 
 def sigmoid(z):
   return 1 / (1 + np.exp(-z))
+
+def predict(X, parameters):
+  W1, b1, W2, b2 = parameters
+
+  Z1 = np.dot(W1, X.T) + b1
+  A1 = sigmoid(Z1)
+  Z2 = np.dot(W2, A1) + b2
+  A2 = sigmoid(Z2)
+
+  predictions = A2
+
+  return predictions.ravel()
+
+parameters = initialize_parameters(X_train.shape[1], 10, 1)
+
+y_pred = predict(X_test, parameters)
+
