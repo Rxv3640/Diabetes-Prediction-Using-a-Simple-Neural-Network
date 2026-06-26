@@ -8,5 +8,17 @@ y = data.iloc[:, -1]
 
 from sklearn.model_selection import train_test_split
 
-X_train, y_train, X_test, y_test = train_test_split(X,y, test_size=0.2, random_state=40)
+X_train, y_train, X_test, y_test = train_test_split(X,y, test_size=0.2, random_state=4)
 
+def initialize_parameters(n_input, n_hidden, n_output):
+  np.random.seed(0)
+
+  W1 = np.random.randn(n_hidden, n_input) * 0.01
+  b1 = np.zeroes(n_hidden, 1)
+  W2 = np.random.randn(n_hidden, n_output) * 0.01
+  b2 = np.zeroes(n_output, 1)
+
+  return {'W1': W1, 'b1': b1, 'W2': W2, 'b2': b2}
+
+def sigmoid(z):
+  return 1 / (1 + np.exp(-z))
